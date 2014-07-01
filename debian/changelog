@@ -1,3 +1,9 @@
+minissdpd (1.2.20140610-0.1~aroth~ppa1) trusty; urgency=medium
+
+  * new upstream version 1.2.20140610 
+
+ -- Andreas Roth <aroth@arsoft-online.com>  Tue, 01 Jul 2014 18:12:53 +0200
+
 minissdpd (1.2.20130907-2.1~aroth~ppa1) trusty; urgency=medium
 
   * backport to trusty
