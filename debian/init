@@ -43,7 +43,7 @@ if ! [ "${START_DAEMON}" = "1" ] ; then
 	exit 0
 fi
 
-if [ -z ${MiniSSDPd_INTERFACE_ADDRESS} ] ; then
+if [ -z "${MiniSSDPd_INTERFACE_ADDRESS}" ] ; then
 	log_daemon_msg "MiniSSDPd: no interface defined: exiting"
 	log_end_msg 1
 	exit 0
@@ -52,7 +52,11 @@ fi
 case "$1" in
 start)
 	log_daemon_msg "Starting ${DESC}" ${NAME}
-	start-stop-daemon --start --pidfile /var/run/minissdpd.pid --exec "/usr/sbin/minissdpd" -- -i ${MiniSSDPd_INTERFACE_ADDRESS}
+	daemon_opts="${MiniSSDPd_DAEMON_OPTIONS}"
+	for ifaddr in ${MiniSSDPd_INTERFACE_ADDRESS}; do
+		daemon_opts="${daemon_opts} -i ${ifaddr}"
+	done
+	start-stop-daemon --start --pidfile /var/run/minissdpd.pid --exec "/usr/sbin/minissdpd" -- ${daemon_opts}
 	RET=$?
 	if [ ${RET} = 0 -o ${RET} = 1 ] ; then
 		log_end_msg 0

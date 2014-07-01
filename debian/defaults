@@ -3,5 +3,8 @@
 # Set this to 1 if you want to start the daemon
 START_DAEMON=1
 
+# Additional daemon options
+MiniSSDPd_DAEMON_OPTIONS=''
+
 # Set this to the IP of the interface you want the demon to run on
 MiniSSDPd_INTERFACE_ADDRESS=0.0.0.0
